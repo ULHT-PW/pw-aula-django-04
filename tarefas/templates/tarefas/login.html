@@ -1,0 +1,21 @@
+{% extends "tarefas/layout.html" %}
+
+{% block main %}
+
+    <h1>Login</h1>
+
+    {% if message %}
+      <div> {{ message }} </div>
+    {% endif %}
+
+    <form action="{% url 'tarefas:login' %}" method="post">
+        {% csrf_token %}
+        <p><input type="text" name="username" placeholder="username" class='form-control'></p>
+        <p><input type="password" name="password" placeholder="password" class='form-control'></p>
+        <div>
+          <input type="submit" value="Login">
+          <a href="{% url 'tarefas:lista' %}">Lista tarefas</a>
+        </div>
+    </form>  
+
+{% endblock main %}

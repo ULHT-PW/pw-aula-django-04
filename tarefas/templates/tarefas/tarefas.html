@@ -1,0 +1,21 @@
+{% extends "tarefas/layout.html" %}
+
+{% block main %}
+ 
+        {% for tarefa in tarefas %}
+        <p>{{ tarefa.titulo }}
+
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'tarefas:editar' tarefa.id %}">Editar</a>              
+            {% endif %}
+        </p>
+        {% endfor %}
+   
+    
+    <div style="text-align: center">Para editar tarefas, deve estar conetado.</div>
+
+    {% if request.user.is_authenticated %}
+        <a id="nova" href="{% url 'tarefas:nova' %}">Nova</a>  
+    {% endif %}
+    
+{% endblock main %}

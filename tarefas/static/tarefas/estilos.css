@@ -1,0 +1,64 @@
+body {
+    background: dodgerblue;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+}
+
+body > * {
+    background: whitesmoke;
+}
+
+header * {
+    text-align: center;
+}
+
+header p {
+    font-style: italic;
+    color: gray;
+}
+
+header div {
+    float: right;
+    margin: 1em;
+}
+
+main {
+    margin: 5em;
+    border-radius: 1em;
+    padding: 1em;
+}
+
+main > p {
+    background: mediumpurple;
+    color: white;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 1em;
+}
+
+a, input[type="submit"] {
+    display: inline-block;
+    padding: 0.3em;
+    background: green;
+    border-radius: .3em;
+    margin-right: 1em;
+    color: white;
+    border: 1px solid black;
+}
+
+a:hover, input[type="submit"]:hover {
+    filter: brightness(80%);
+    text-decoration:none;
+    color: black;
+}
+
+main p a {
+    background: yellow;
+    color: black;
+    float: right;
+}
+
+div a:nth-child(2), div a:nth-child(3) {
+    background-color: whitesmoke;
+    color: grey;
+}
