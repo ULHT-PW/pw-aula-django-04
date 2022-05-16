@@ -3,12 +3,14 @@ from django.urls import reverse
 from django.shortcuts import render
 from .models import Flight, Passenger
 
+
 # Create your views here.
 
 def index_view(request):
     return render(request, 'flights\index.html', {
         'flights': Flight.objects.all()
     })
+
 
 def flight_view(request, flight_id):
     f = Flight.objects.get(id=flight_id)
