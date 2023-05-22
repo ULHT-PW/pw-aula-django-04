@@ -1,0 +1,31 @@
+{% extends "flights\layout.html" %}
+
+{% block main %}
+
+<h3>Passenger: {{ passenger.name }}</h3>
+<p>Flights:</p>
+<ul>
+  {% for f in passenger.flights.all %}
+  <li> <a href="{% url 'flights:flight' f.id %}">{{ f }}</a>   <a href="{% url 'flights:remove' f.id passenger.id %}">Remover</a></li>
+  {% endfor %}
+</ul>
+
+
+<p>Book flight:
+
+<form action="{% url 'flights:passenger_book' passenger.id %}" method="POST">
+  {% csrf_token %}
+  <select name="flight">
+    {% for f in non_flights.all %}
+    <option value="{{ f.id }}">{{f}}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" value="Book flight">
+</form>
+</p>
+
+<p>
+  <a href="{% url 'flights:index' %}">Back to Flight list</a>
+</p>
+
+{% endblock main %}

@@ -2,7 +2,7 @@
 
 {% block main %}
 
-  <h1>List of Flights</h1>
+  <h3>List of Flights</h3>
   <ul>
     {% for f in flights  %}
     <li> <a href="{% url 'flights:flight' f.id %}">{{ f }}</a> </li>

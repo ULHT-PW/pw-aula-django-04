@@ -25,6 +25,33 @@ def flight_view(request, flight_id):
 def book_view(request, flight_id):
     if request.method == 'POST':
         f = Flight.objects.get(pk=flight_id)
-        passenger = int(request.POST['passenger'])
+        passenger = Passenger.objects.get(id=request.POST['passenger'])
         passenger.flights.add(f)
-        return HttpResponseRedirect(reverse('flights:flight', args=(f.id)))
+        return HttpResponseRedirect(reverse('flights:flight', args=(f.id,)))
+    
+
+def passenger_book_view(request, passenger_id):
+    if request.method == 'POST':
+        passenger = Passenger.objects.get(pk=passenger_id)
+        flight = Flight.objects.get(id=request.POST['flight'])
+        passenger.flights.add(flight)
+        return HttpResponseRedirect(reverse('flights:passenger', args=(passenger.id,)))
+    
+
+def remove_flight_view(request, flight_id, passenger_id):
+    passenger = Passenger.objects.get(id=passenger_id)
+    flight = Flight.objects.get(id=flight_id)
+    passenger.flights.remove(flight)
+    return HttpResponseRedirect(reverse('flights:passenger', args=(passenger.id,)))
+
+
+
+
+def passenger_view(request, passenger_id):
+    
+    passenger = Passenger.objects.get(id=passenger_id)
+    context = {
+        'passenger':passenger,
+        'non_flights':Flight.objects.exclude(passengers__id=passenger.id),
+        }
+    return render(request, 'flights/passenger.html', context)

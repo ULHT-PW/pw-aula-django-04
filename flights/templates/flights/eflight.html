@@ -2,7 +2,7 @@
 
 
 {% block main %}
-<h1>Flight {{ flight.id }}</h1>
+<h3>Flight nr. {{ flight.id }}</h3>
 
 <ul>
   <li>Origin: {{flight.origin}}</li>
@@ -10,10 +10,10 @@
   <li>Duration: {{flight.duration}}</li>
 </ul>
 
-<h2>Passengers</h2>
+<h4>Passengers</h4>
 <ul>
   {% for passenger in passengers %}
-  <li> {{passenger}}</li>
+  <li> <a href="{% url 'flights:passenger' passenger.id %}">{{passenger}}</a></li>
   {% empty %}
   <li>No passengers</li>
   {% endfor %}
@@ -30,5 +30,7 @@
 </form> 
 
 
-<a href="{% url 'flights:index' %}">Back to Flight list</a>
+<p>
+  <a href="{% url 'flights:index' %}">Back to Flight list</a>
+</p>
 {% endblock main %}
