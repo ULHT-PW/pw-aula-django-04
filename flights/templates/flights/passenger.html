@@ -2,11 +2,11 @@
 
 {% block main %}
 
-<h3>Passenger: {{ passenger.name }}</h3>
+<h3>Passenger: {{ passenger.first }} {{ passenger.last }}</h3>
 <p>Flights:</p>
 <ul>
   {% for f in passenger.flights.all %}
-  <li> <a href="{% url 'flights:flight' f.id %}">{{ f }}</a>   <a href="{% url 'flights:remove' f.id passenger.id %}">Remover</a></li>
+  <li> <a href="{% url 'flights:flight' f.id %}">{{ f }}</a> -  <a href="{% url 'flights:remove' f.id passenger.id %}"><button>Remove</button></a></li>
   {% endfor %}
 </ul>
 
